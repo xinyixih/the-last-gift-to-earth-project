@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Guide · The Last Gift to Earth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Open+Sans:wght@400;500;600;700&family=Gloock&family=Abril+Fatface&family=DM+Serif+Display&family=Nunito+Sans:wght@400;600;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   DESIGN TOKENS — edit these (or use the panel on the page)
+   ========================================================= */
+:root {
+  /* Colors (sampled from your poster) */
+  --color-bg:        #F1EFEB;  /* paper background */
+  --color-surface:   #FAF9F6;  /* cards */
+  --color-heading:   #3C4922;  /* deep olive — headings */
+  --color-text:      #3A3F33;  /* body text */
+  --color-muted:     #6F7464;  /* captions, secondary text */
+  --color-leaf:      #6B8A3E;  /* leaf green — links, accents */
+  --color-sage:      #C9D2B4;  /* soft sage — tags, borders */
+  --color-blossom:   #C98A9A;  /* dusty pink flower */
+  --color-lavender:  #9C8FC4;  /* aster purple */
+  --color-sun:       #E3C44E;  /* dandelion yellow */
+
+  /* Fonts */
+  --font-heading: "Fraunces", Georgia, serif;
+  --font-body:    "Open Sans", system-ui, sans-serif;
+  --heading-soft: 100;   /* Fraunces "softness" 0–100 */
+  --heading-wonk: 1;     /* Fraunces quirky letterforms 0/1 */
+  --heading-weight: 800;
+
+  /* Type scale */
+  --base-size: 18px;
+  --ratio: 1.333;
+  --fs-small: calc(var(--base-size) / var(--ratio));
+  --fs-body:  var(--base-size);
+  --fs-h4:    calc(var(--base-size) * var(--ratio));
+  --fs-h3:    calc(var(--fs-h4) * var(--ratio));
+  --fs-h2:    calc(var(--fs-h3) * var(--ratio));
+  --fs-h1:    calc(var(--fs-h2) * var(--ratio));
+
+  /* Shape */
+  --radius: 14px;
+  --line-height: 1.6;
+}
+
+/* ===================== Base ===================== */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--line-height);
+}
+h1, h2, h3, h4, .display {
+  font-family: var(--font-heading);
+  color: var(--color-heading);
+  font-weight: var(--heading-weight);
+  font-variation-settings: "SOFT" var(--heading-soft), "WONK" var(--heading-wonk);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.4em;
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); }
+p  { margin: 0 0 1em; max-width: 65ch; }
+small, .small { font-size: var(--fs-small); color: var(--color-muted); }
+a { color: var(--color-leaf); text-underline-offset: 3px; }
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-leaf);
+}
+
+/* ===================== Guide layout ===================== */
+.guide { display: grid; grid-template-columns: 300px 1fr; min-height: 100vh; }
+.panel {
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  background: #fff; border-right: 1px solid var(--color-sage);
+  padding: 20px; font-family: "Open Sans", sans-serif; font-size: 14px; color: #333;
+}
+.panel h2 { font-family: "Open Sans", sans-serif; font-size: 16px; color: #222; font-variation-settings: normal; font-weight: 700; margin-top: 20px; }
+.panel label { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 8px 0; }
+.panel input[type=color] { width: 44px; height: 28px; border: 1px solid #ccc; border-radius: 6px; padding: 0; background: none; }
+.panel select, .panel input[type=range] { width: 150px; }
+.panel button { width: 100%; padding: 10px; margin-top: 8px; border-radius: 8px; border: 1px solid #333; background: #222; color: #fff; font-weight: 600; cursor: pointer; }
+.panel button.secondary { background: #fff; color: #222; }
+.panel textarea { width: 100%; height: 160px; font-family: ui-monospace, monospace; font-size: 11px; margin-top: 8px; display: none; }
+.panel .hint { font-size: 12px; color: #777; }
+main.content { padding: 0 0 80px; overflow: hidden; }
+.section { padding: 56px 64px; border-bottom: 1px dashed var(--color-sage); }
+.section > .label {
+  font-family: ui-monospace, monospace; font-size: 12px; color: var(--color-muted);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px;
+}
+
+/* ===================== Sample hero ===================== */
+.hero {
+  position: relative; text-align: center;
+  padding: 150px 64px 250px; background: var(--color-bg);
+}
+.hero::before, .hero::after {
+  content: ""; position: absolute; left: 0; right: 0; pointer-events: none;
+  background-repeat: no-repeat; background-size: 100% auto;
+}
+.hero::before { top: 0; height: 160px; background-image: url("images/botanical-top.png"); background-position: top; }
+.hero::after  { bottom: 0; height: 330px; background-image: url("images/botanical-bottom.png"); background-position: bottom; }
+.hero h1 { position: relative; z-index: 1; }
+.hero p  { margin: 0 auto 1.4em; position: relative; z-index: 1; font-size: calc(var(--fs-body) * 1.15); }
+.hero .btn-row { position: relative; z-index: 1; justify-content: center; }
+
+/* ===================== Palette ===================== */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+.swatch { border-radius: var(--radius); overflow: hidden; background: var(--color-surface); border: 1px solid var(--color-sage); }
+.swatch .chip { height: 90px; }
+.swatch .meta { padding: 10px 12px; font-size: 13px; }
+.swatch .meta b { display: block; color: var(--color-heading); }
+.swatch code { color: var(--color-muted); }
+
+/* ===================== Type scale ===================== */
+.type-row { display: grid; grid-template-columns: 140px 1fr; align-items: baseline; gap: 24px; padding: 14px 0; border-bottom: 1px solid var(--color-sage); }
+.type-row .spec { font-family: ui-monospace, monospace; font-size: 12px; color: var(--color-muted); }
+.type-row > :last-child { margin: 0; }
+
+/* ===================== Components ===================== */
+.btn-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 0.8em 1.5em; border-radius: 999px; font-weight: 600;
+  font-family: var(--font-body); font-size: var(--fs-body);
+  text-decoration: none; border: 2px solid var(--color-heading); cursor: pointer;
+  transition: transform .15s ease, background .15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--color-heading); color: var(--color-bg); }
+.btn-secondary { background: transparent; color: var(--color-heading); }
+.tag {
+  display: inline-block; padding: 4px 12px; border-radius: 999px;
+  background: var(--color-sage); color: var(--color-heading);
+  font-size: var(--fs-small); font-weight: 600;
+}
+.tag.pink { background: color-mix(in srgb, var(--color-blossom) 35%, white); }
+.tag.purple { background: color-mix(in srgb, var(--color-lavender) 35%, white); }
+.tag.yellow { background: color-mix(in srgb, var(--color-sun) 40%, white); }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.card {
+  background: var(--color-surface); border: 1px solid var(--color-sage);
+  border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 6px;
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.card:hover { box-shadow: 0 10px 30px rgba(60,73,34,.12); transform: translateY(-3px); }
+.card .num { font-family: var(--font-heading); font-variation-settings: "SOFT" var(--heading-soft), "WONK" var(--heading-wonk); font-size: var(--fs-h3); color: var(--color-leaf); font-weight: 800; line-height: 1; }
+.card h4 { margin: 4px 0; }
+.card p { font-size: var(--fs-small); margin: 0 0 8px; color: var(--color-text); }
+.card a { margin-top: auto; font-weight: 600; font-size: var(--fs-small); }
+
+.stats { display: flex; gap: 20px; flex-wrap: wrap; }
+.stat { flex: 1 1 160px; text-align: center; padding: 24px; border-radius: var(--radius); background: var(--color-surface); border: 1px solid var(--color-sage); }
+.stat .display { font-size: var(--fs-h2); margin: 0; }
+
+.timeline { list-style: none; padding: 0; margin: 0; max-width: 720px; }
+.timeline li { display: grid; grid-template-columns: 110px 1fr; gap: 20px; padding: 16px 0; border-left: 3px solid var(--color-sage); padding-left: 24px; position: relative; }
+.timeline li::before { content: ""; position: absolute; left: -9px; top: 22px; width: 15px; height: 15px; border-radius: 50%; background: var(--color-leaf); border: 3px solid var(--color-bg); }
+.timeline .time { font-weight: 700; color: var(--color-heading); }
+.timeline h4 { font-size: calc(var(--fs-body) * 1.15); margin: 0 0 2px; }
+.timeline p { margin: 0; font-size: var(--fs-small); }
+
+.checklist { list-style: none; padding: 0; max-width: 620px; }
+.checklist label { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; cursor: pointer; border-bottom: 1px solid var(--color-sage); }
+.checklist input { width: 20px; height: 20px; accent-color: var(--color-leaf); margin-top: 4px; }
+.checklist input:checked + span { text-decoration: line-through; color: var(--color-muted); }
+
+table { border-collapse: collapse; width: 100%; max-width: 720px; background: var(--color-surface); border-radius: var(--radius); overflow: hidden; }
+th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--color-sage); font-size: var(--fs-small); }
+th { background: var(--color-heading); color: var(--color-bg); font-weight: 600; }
+
+blockquote {
+  margin: 0; max-width: 640px; padding: 20px 28px; border-left: 4px solid var(--color-blossom);
+  background: var(--color-surface); border-radius: 0 var(--radius) var(--radius) 0;
+  font-style: italic; font-size: calc(var(--fs-body) * 1.1);
+}
+
+details { max-width: 680px; border-bottom: 1px solid var(--color-sage); padding: 14px 0; }
+summary { cursor: pointer; font-weight: 600; color: var(--color-heading); list-style: none; display: flex; justify-content: space-between; }
+summary::after { content: "+"; font-size: 1.3em; line-height: 1; }
+details[open] summary::after { content: "–"; }
+details p { margin: 10px 0 0; }
+
+.cta-band {
+  background: var(--color-heading); color: var(--color-bg);
+  border-radius: calc(var(--radius) * 1.5); padding: 48px; text-align: center;
+}
+.cta-band h2 { color: var(--color-bg); }
+.cta-band p { margin: 0 auto 1.2em; }
+.cta-band .btn-primary { background: var(--color-bg); color: var(--color-heading); border-color: var(--color-bg); }
+
+@media (max-width: 900px) {
+  .guide { grid-template-columns: 1fr; }
+  .panel { position: static; height: auto; }
+  .section { padding: 40px 24px; }
+  .hero { padding: 120px 24px 200px; }
+}
+</style>
+</head>
+<body>
+<div class="guide">
+
+  <!-- ============ Live controls ============ -->
+  <aside class="panel">
+    <strong style="font-size:17px">Style controls</strong>
+    <p class="hint">Change anything here and the page updates live. When you're happy, click "Copy CSS" and paste the result back to me.</p>
+
+    <h2>Colors</h2>
+    <div id="colorControls"></div>
+
+    <h2>Fonts</h2>
+    <label>Headings
+      <select data-var="--font-heading">
+        <option value='"Fraunces", Georgia, serif'>Fraunces (soft retro)</option>
+        <option value='"Gloock", Georgia, serif'>Gloock</option>
+        <option value='"Abril Fatface", Georgia, serif'>Abril Fatface</option>
+        <option value='"DM Serif Display", Georgia, serif'>DM Serif Display</option>
+        <option value='"Lora", Georgia, serif'>Lora</option>
+      </select>
+    </label>
+    <label>Body
+      <select data-var="--font-body">
+        <option value='"Open Sans", system-ui, sans-serif'>Open Sans</option>
+        <option value='"Nunito Sans", system-ui, sans-serif'>Nunito Sans</option>
+        <option value='"Lora", Georgia, serif'>Lora</option>
+      </select>
+    </label>
+    <label>Heading softness <input type="range" min="0" max="100" step="5" data-var="--heading-soft" value="100"></label>
+    <label>Quirky letters <input type="range" min="0" max="1" step="1" data-var="--heading-wonk" value="1"></label>
+    <label>Heading weight <input type="range" min="400" max="900" step="100" data-var="--heading-weight" value="800"></label>
+    <p class="hint">Softness / quirky only affect Fraunces.</p>
+
+    <h2>Sizes</h2>
+    <label>Base size <span><input type="range" min="15" max="22" step="1" data-var="--base-size" data-unit="px" value="18"> <output id="baseOut">18px</output></span></label>
+    <label>Scale ratio
+      <select data-var="--ratio">
+        <option value="1.2">1.2 (subtle)</option>
+        <option value="1.25">1.25</option>
+        <option value="1.333" selected>1.333 (default)</option>
+        <option value="1.414">1.414 (dramatic)</option>
+      </select>
+    </label>
+    <label>Corner radius <input type="range" min="0" max="28" step="2" data-var="--radius" data-unit="px" value="14"></label>
+
+    <button id="copyBtn">Copy CSS</button>
+    <button id="resetBtn" class="secondary">Reset</button>
+    <textarea id="cssOut" readonly></textarea>
+  </aside>
+
+  <!-- ============ Samples ============ -->
+  <main class="content">
+
+    <section class="hero">
+      <p class="eyebrow">A free toolkit for organizations</p>
+      <h1>The Last Gift<br>to Earth</h1>
+      <p>A program for starting conversations about green burial and end-of-life choices.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#">Open the toolkit ↗</a>
+        <a class="btn btn-secondary" href="#">How it works</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="label">01 · Color palette</div>
+      <div class="swatches" id="swatches"></div>
+    </section>
+
+    <section class="section">
+      <div class="label">02 · Typography scale</div>
+      <div class="type-row"><span class="spec" data-size="--fs-h1">H1</span><h1>What is Green Burial?</h1></div>
+      <div class="type-row"><span class="spec" data-size="--fs-h2">H2</span><h2>Why this project exists</h2></div>
+      <div class="type-row"><span class="spec" data-size="--fs-h3">H3</span><h3>What's in this toolkit</h3></div>
+      <div class="type-row"><span class="spec" data-size="--fs-h4">H4</span><h4>Facilitator Guide</h4></div>
+      <div class="type-row"><span class="spec" data-size="--fs-body">Body</span><p>Most people never think about what happens to their body after death. When the time comes, families often have only a few days to decide, so they choose the default.</p></div>
+      <div class="type-row"><span class="spec" data-size="--fs-small">Small</span><small>Session length about 45 minutes · Group size 8–30 people</small></div>
+      <div class="type-row"><span class="spec" data-size="--fs-small">Eyebrow</span><span class="eyebrow">Step 1 · Review the materials</span></div>
+      <div class="type-row"><span class="spec">Link</span><p>Read the <a href="#">Facilitator Guide</a> before your session.</p></div>
+    </section>
+
+    <section class="section">
+      <div class="label">03 · Buttons & tags</div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#">Open Google Drive ↗</a>
+        <a class="btn btn-secondary" href="#">Read the guide</a>
+        <span class="tag">Folder 01</span>
+        <span class="tag pink">Optional</span>
+        <span class="tag purple">Print</span>
+        <span class="tag yellow">New</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="label">04 · Stats</div>
+      <div class="stats">
+        <div class="stat"><p class="display">45</p><small>minutes per session</small></div>
+        <div class="stat"><p class="display">8–30</p><small>participants</small></div>
+        <div class="stat"><p class="display">Free</p><small>plus optional diorama materials</small></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="label">05 · Toolkit cards</div>
+      <div class="cards">
+        <article class="card">
+          <span class="num">01</span>
+          <h4>Facilitator Guide</h4>
+          <p>Session plan, script, and tips for discussing death gently.</p>
+          <a href="#">Open folder ↗</a>
+        </article>
+        <article class="card">
+          <span class="num">02</span>
+          <h4>Presentation</h4>
+          <p>Editable slides with speaker notes.</p>
+          <a href="#">Open folder ↗</a>
+        </article>
+        <article class="card">
+          <span class="num">03</span>
+          <h4>Activity <span class="tag pink">Optional</span></h4>
+          <p>Diorama build guide, printable poster, and quiz.</p>
+          <a href="#">Open folder ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="label">06 · Session timeline</div>
+      <ol class="timeline">
+        <li><span class="time">0–5 min</span><div><h4>Welcome & introduction</h4><p>Make people feel safe and comfortable.</p></div></li>
+        <li><span class="time">5–15 min</span><div><h4>The problem</h4><p>Show the environmental cost of conventional options.</p></div></li>
+        <li><span class="time">15–25 min</span><div><h4>The options</h4><p>Introduce greener alternatives.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="section">
+      <div class="label">07 · Checklist (interactive)</div>
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>Read the Welcome & Overview (folder 00)</span></label></li>
+        <li><label><input type="checkbox"><span>Book a room with a projector and enough seating</span></label></li>
+        <li><label><input type="checkbox"><span>Print the handouts, one set per participant</span></label></li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <div class="label">08 · Table, quote, FAQ</div>
+      <table>
+        <thead><tr><th>Folder</th><th>What's inside</th></tr></thead>
+        <tbody>
+          <tr><td>04_Handouts</td><td>Options comparison, family conversation guide, wishes checklist, resource list</td></tr>
+          <tr><td>05_Promotion Kit</td><td>Flyer, Instagram templates, and outreach email</td></tr>
+        </tbody>
+      </table>
+      <br><br>
+      <blockquote>"Your choices matter, because when more people ask funeral homes for greener options, more funeral homes start offering them."</blockquote>
+      <br>
+      <details open>
+        <summary>What is green burial?</summary>
+        <p>A burial without embalming chemicals, concrete vaults, or metal caskets. The body is placed in a biodegradable casket or shroud so it can return naturally to the earth.</p>
+      </details>
+      <details>
+        <summary>Is this legal in California?</summary>
+        <p>Answer goes here.</p>
+      </details>
+    </section>
+
+    <section class="section">
+      <div class="label">09 · Call to action band</div>
+      <div class="cta-band">
+        <h2>Ready to host a session?</h2>
+        <p>Everything you need is in one shared Google Drive folder. Make a copy and make it yours.</p>
+        <a class="btn btn-primary" href="#">Get the toolkit ↗</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+const root = document.documentElement;
+const colors = {
+  "--color-bg": "Background",
+  "--color-surface": "Card surface",
+  "--color-heading": "Headings (olive)",
+  "--color-text": "Body text",
+  "--color-muted": "Muted text",
+  "--color-leaf": "Leaf green (links)",
+  "--color-sage": "Sage (borders/tags)",
+  "--color-blossom": "Blossom pink",
+  "--color-lavender": "Lavender",
+  "--color-sun": "Sun yellow"
+};
+const defaults = {};
+const get = v => getComputedStyle(root).getPropertyValue(v).trim();
+
+// Build color pickers + swatches
+const controls = document.getElementById("colorControls");
+const swatches = document.getElementById("swatches");
+for (const [v, name] of Object.entries(colors)) {
+  defaults[v] = get(v);
+  const label = document.createElement("label");
+  label.innerHTML = `<span>${name}</span><input type="color" value="${get(v)}" data-var="${v}">`;
+  controls.appendChild(label);
+
+  const sw = document.createElement("div");
+  sw.className = "swatch";
+  sw.innerHTML = `<div class="chip" style="background:var(${v})"></div><div class="meta"><b>${name}</b><code data-hex="${v}">${get(v)}</code></div>`;
+  swatches.appendChild(sw);
+}
+
+// Remember non-color defaults
+document.querySelectorAll(".panel [data-var]").forEach(el => {
+  if (!(el.dataset.var in defaults)) defaults[el.dataset.var] = get(el.dataset.var);
+});
+
+function updateLabels() {
+  document.querySelectorAll("[data-hex]").forEach(c => c.textContent = get(c.dataset.hex).toUpperCase());
+  document.querySelectorAll("[data-size]").forEach(s => {
+    const tmp = document.createElement("div");
+    tmp.style.fontSize = `var(${s.dataset.size})`;
+    document.body.appendChild(tmp);
+    const px = Math.round(parseFloat(getComputedStyle(tmp).fontSize));
+    tmp.remove();
+    s.textContent = s.textContent.split(" ·")[0] + " · " + px + "px";
+  });
+  document.getElementById("baseOut").textContent = get("--base-size");
+}
+
+document.querySelectorAll(".panel [data-var]").forEach(el => {
+  el.addEventListener("input", () => {
+    root.style.setProperty(el.dataset.var, el.value + (el.dataset.unit || ""));
+    updateLabels();
+  });
+});
+
+document.getElementById("copyBtn").addEventListener("click", () => {
+  const vars = Object.keys(defaults).map(v => `  ${v}: ${get(v)};`).join("\n");
+  const css = `:root {\n${vars}\n}`;
+  const out = document.getElementById("cssOut");
+  out.value = css; out.style.display = "block"; out.select();
+  if (navigator.clipboard) navigator.clipboard.writeText(css).catch(() => {});
+  document.getElementById("copyBtn").textContent = "Copied ✓ (also shown below)";
+  setTimeout(() => document.getElementById("copyBtn").textContent = "Copy CSS", 2000);
+});
+
+document.getElementById("resetBtn").addEventListener("click", () => location.reload());
+
+if (document.fonts) document.fonts.ready.then(updateLabels);
+updateLabels();
+</script>
+</body>
+</html>
