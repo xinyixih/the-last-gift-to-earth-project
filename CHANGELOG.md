@@ -15,6 +15,22 @@ A record of changes to The Last Gift to Earth website. Newest changes go at the 
 
 ---
 
+## 2026-11-19: Moved to the project repository
+**Who:** Kristine, with Claude
+
+- **Pages:** The site now lives in `the-last-gift-to-earth-project` (Git repo: `xinyixih/the-last-gift-to-earth-project`). All files were copied over from the old `the-last-gift-website` folder; future edits happen here only.
+- **Fix:** Restored the latest `CHANGELOG.md` and `DESIGN.md` (the image update notes were missing from the copy).
+
+## 2026-11-19: Higher-quality botanical images
+**Who:** Kristine, with Claude
+
+- **Design:** Replaced the low-res hero images with new crops from the full poster (`images/What is Green Burial.png`, 1080×1350):
+  - `botanical-top.png`: 806×165 → **1080×255** (now includes more of the vine and the purple aster)
+  - `botanical-bottom.png`: 806×336 → **1080×450**
+  - `botanical-side.png`: 175×535 → **260×645** (not used on any page yet)
+- **Design:** Made the background transparent and added soft fades where plants cross the crop line, so there are no hard straight edges.
+- **Note:** These are sharper, but still a bit soft on large screens (the site stretches them to ~1300px or wider). For the sharpest result, export the plants from Canva at 2× size (2160px wide) with a transparent background, without the text, and replace the files.
+
 ## 2026-11-19: ⭐ First full version of the site (v1.0)
 **Who:** Kristine, with Claude
 

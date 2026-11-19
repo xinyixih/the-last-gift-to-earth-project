@@ -115,7 +115,8 @@ Section dividers: `1px dashed var(--color-sage)`.
 
 - Vintage botanical illustrations (leaves, wildflowers) frame the hero: one strip along the top edge and a larger cluster along the bottom.
 - PNGs with transparent backgrounds, full width, decorative only (`alt=""`).
-- **To do:** the current `images/botanical-*.png` files were cropped from a screenshot and are low resolution. Replace them with high-res transparent PNG exports from Canva (at least 2400px wide), keeping the same file names.
+- Current files are cropped from `images/What is Green Burial.png` (1080px wide), with the background removed and soft fades at the crop edges. `botanical-top.png` is 1080×255 and `botanical-bottom.png` is 1080×450.
+- **Possible upgrade:** for the sharpest result on large screens, export the plants alone from Canva at 2× (2160px wide, transparent, no text) and replace the files, keeping the same names.
 
 ---
 
